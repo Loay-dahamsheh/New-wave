@@ -10,12 +10,12 @@ require('dotenv').config();
 
 
 const storage = multer.diskStorage({
-  destination: 'C:/Users/Orange/Desktop/masterP-Back-End 1/client/src/assets/uploads', 
+  destination: 'C:/Users/Orange/Desktop/New-wave/client/src/assets/uploads', 
   filename: function (req, file, cb) {
     cb(null, 'image-' + Date.now() + path.extname(file.originalname));
   }
 });
-
+//client\src\assets\uploads  C:\Users\Orange\Desktop\New-wave\client\src\assets\uploads
 const upload = multer({
   storage: storage,
   fileFilter: function (req, file, cb) {

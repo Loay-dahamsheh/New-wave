@@ -114,7 +114,7 @@ Dashboard.createproduct = async (product_name,product_detail,image ,price,counts
 
       Dashboard.allcategories = async () => {
         try {
-          const result = await db.query('SELECT id, category, cat_image /* other category fields */ FROM categories WHERE is_deleted = false');
+          const result = await db.query('SELECT * FROM categories WHERE is_deleted = false');
           return result.rows;
         } catch (err) {
           throw err;

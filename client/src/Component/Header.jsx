@@ -1,55 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Search from "./Search";
+import Cookies from "js-cookie";
 
 const Header = () => {
-  const [isNavVisible, setNavVisible] = useState(true);
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
   const [userProfileImage, setUserProfileImage] = useState("");
+  const [isNavVisible, setNavVisible] = useState(true);
   const navigate = useNavigate();
 
-  const toggleNav = () => {
-    setNavVisible(!isNavVisible);
-  };
+  useEffect(() => {
+    // Check if the user is logged in using persistent storage (e.g., cookies)
+    const accessToken = Cookies.get("accessToken");
+
+    if (accessToken) {
+      // User is logged in
+      setLoggedIn(true);
+      setUserProfileImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
+    } else {
+      // User is not logged in
+      setLoggedIn(false);
+      setUserProfileImage("");
+    }
+  }, []);
 
   const handleLogin = () => {
     // Perform authentication logic
-    // For simplicity, let's assume successful login and set user information
-    setLoggedIn(true);
-    setUserProfileImage("https://cdn-icons-png.flaticon.com/256/3135/3135789.png");
+
+    // Set persistent storage (e.g., cookies) to indicate the user is logged in
+    // Cookies.set("accessToken");
+
+    // Update local state
+    setLoggedIn(false);
+    setUserProfileImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
 
     // Redirect to the login page
     navigate("/Login");
   };
 
   const handleLogout = () => {
-    // Perform logout logic
+    // Clear persistent storage (e.g., cookies) to indicate the user is logged out
+    Cookies.remove("accessToken");
+
+    // Update local state
     setLoggedIn(false);
     setUserProfileImage("");
+
+    // Redirect to the home page or any other desired location
+    navigate("/");
+  };
+
+  const toggleNav = () => {
+    setNavVisible(!isNavVisible);
   };
 
   const NavLogin = isLoggedIn ? (
     <div className="flex items-center">
-      <Link to="/Profile"><img
-        // src={userProfileImage}
-        src = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-        alt="User Profile"
-        className="h-8 w-auto rounded-full mr-2"
-      /></Link>
-      {/* <span className="text-md font-bold text-blue-700">
-        User Name 
-      </span> */}
-      <button
+      <Link to="/Profile">
+        <img
+          src={userProfileImage}
+          alt="User Profile"
+          className="h-8 w-auto rounded-full mr-2"
+        />
+      </Link>
+      <Link
+        to="/"
         onClick={handleLogout}
         className="block text-md px-4 py-2 rounded text-blue-700 ml-2 font-bold hover:text-white mt-4 hover:bg-blue-700 lg:mt-0"
       >
         Logout
-      </button>
+      </Link>
     </div>
   ) : (
     <div className="flex ">
       <Link
         to="/Login"
+        // onClick={handleLogin}
         className="block text-md px-4 py-2 rounded text-blue-700 ml-2 font-bold hover:text-white mt-4 hover:bg-blue-700 lg:mt-0"
       >
         Sign in
@@ -60,14 +86,12 @@ const Header = () => {
       >
         Sign Up
       </Link>
-      {/* <Link to="./Admin"><button>hg</button></Link> */}
     </div>
-    
   );
 
   return (
     <div className="sticky top-0 w-full z-50">
-      <nav  
+      <nav
         id="navv"
         className="flex items-center justify-between flex-wrap bg-white py-4 lg:px-12 shadow border-solid border-t-2 border-blue-700 bg-gradient-to-r from-gray-100 via-[#bce1ff] to-gray-100"
       >
@@ -134,14 +158,8 @@ const Header = () => {
               >
                 Contact
               </Link>
-              {/* <Link
-                to="/BookNow"
-                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
-              >
-                Book now
-              </Link> */}
             </div>
-      <Search/>
+            <Search />
             <div className="flex ">{NavLogin}</div>
           </div>
         )}

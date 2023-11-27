@@ -44,7 +44,7 @@ const Registration = () => {
 
     try {
       // Send the data to the server using Axios or another method
-      const response = await axios.post("http://localhost:4000/users", {
+      const response = await axios.post("http://127.0.0.1:3001/register", {
         username: username,
         email: email,
         password: password,

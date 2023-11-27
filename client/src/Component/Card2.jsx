@@ -12,9 +12,9 @@ const Card2 = () => {
     AOS.init();
 
     axios
-      .get("http://localhost:4000/Person")
+      .get("http://127.0.0.1:3001/dashboard/allemployees")
       .then((response) => {
-        setData(response.data);
+        setData(response.data.employees);
       })
       .catch((error) => console.error("Error fetching data: ", error));
   }, []);

@@ -11,10 +11,10 @@ const Card = () => {
   useEffect(() => {
     AOS.init();
 
-    axios.get('http://localhost:4000/MyData')
+    axios.get('http://127.0.0.1:3001/dashboard/allcategories')
       .then(response => {
-        setData(response.data);
-        console.log("ffffffffffffffffffffffffff",data)
+        setData(response.data.categories);
+        console.log("issa",response.data.categories)
       })
       .catch(error => console.error('حدث خطأ أثناء جلب البيانات: ', error));
   }, []);
@@ -26,14 +26,16 @@ const Card = () => {
    </h1></div><br></br>wonderful site. At the top is an advertisement for your online cleaning business..
     
       <div id='card'>
-        {data && data.map(key => (
-          <div key={key.id} data-aos="fade-up" className="flex space-x-4">
+        { data.map(keys => (
+          <div key={keys.id} data-aos="fade-up" className="flex space-x-4">
+            
             <div id='l' className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <img id='image' className="rounded-t-lg" src={key.image} alt="" />
+            <h5 id='text' className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{keys.name}</h5>
+                <img id='image' className="rounded-t-lg" src={keys.images} alt="" />
               <div className="p-5">
-                  <h5 id='text' className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{key.title}</h5>
+                  
            
-                <p id='text' className="mb-3 font-normal text-gray-700 dark:text-gray-400">{key.description}</p>
+                {/* <p id='text' className="mb-3 font-normal text-gray-700 dark:text-gray-400">{key.description}</p> */}
                 
               </div>
             </div>

@@ -43,25 +43,28 @@ async function login(req, res){
     try{
         const {email, password} = req.body;
         const valid = validation("anything", email, password);
+        console.log(email,password)
+        console.log(req.body)
         if (valid){
+          
             const getUser = user.login(email);
             getUser.then((value) => {
                 bcrypt.compare(password, value.password, (error, result) => {
                     if (error) {
-                        res.status(400).json('email not found');
+                        res.status(401).json('email not found');
                     } else if (result) {
                         const accessToken = jwt.sign({id : value.id, username : value.username, email : value.email},process.env.SECRET_KEY, {expiresIn: '7d'});
                         res.cookie('token', accessToken, { httpOnly: true });
                         res.status(200).json({value,accessToken});
                     } else {
-                        res.status(400).json('incorrect password');
+                        res.status(402).json('incorrect password');
                     }
                   });
             }).catch((error) => {
-                res.status(400).json(error.detail);
+                res.status(403).json(error.detail);
             });
         } else {
-            res.status(400).json({error : "values is not valid"});
+            res.status(404).json({error : "values is not valid"});
         }
     } catch(error){
         res.status(500).json("error in login");

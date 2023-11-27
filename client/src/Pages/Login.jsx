@@ -13,7 +13,7 @@ const Login = () => {
 
   useEffect(() => {
     // Check for existing token when the component mounts
-    const existingToken = getCookie("token");
+    const existingToken = getCookie("accessToken");
 
     if (existingToken) {
       // Token exists, you may choose to redirect to the home page or perform any other action
@@ -21,10 +21,15 @@ const Login = () => {
     }
   }, []);
 
-  const getCookie = (name) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(";").shift();
+  // const getCookie = (name) => {
+  //   const value = `; ${document.cookie}`;
+  //   const parts = value.split(`; ${name}=`);
+  //   if (parts.length === 2) return parts.pop().split(";").shift();
+  // };
+
+  const getCookie = (name, value) => {
+    const cookieValue = encodeURIComponent(name) + '=' + encodeURIComponent(value) + '; expires=' + '; path=/';
+    document.cookie = cookieValue;
   };
 
   const handleLogin = async (e) => {
@@ -46,7 +51,18 @@ const Login = () => {
         setError("Password and Confirm Password do not match");
         return;
       }
-
+  //     const data = {
+  //       email: email,
+  //       password: password
+  //     };
+  //     const url = "http://127.0.0.1:3001/login"
+  //     axios.post(url, data)
+  // .then(response => {
+  //   console.log('Response:', response.data);
+  // })
+  // .catch(error => {
+  //   console.error('Error:', error);
+  // });
       // Password strength validation
       const passwordRegex =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
@@ -59,23 +75,29 @@ const Login = () => {
 
       // Clear any previous error
       setError("");
-
-      const response = await axios.get(`http://localhost:4000/users?email=${email}&password=${password}`);
+      const response = await axios.post(`http://127.0.0.1:3001/login`,{
+        email: email,
+        password: password
+      });
+      Cookies.set("accessToken",response.data.accessToken)
+      console.log("Server Response:", response);
       if(response.status == 200){
-        if(response.data[0].id== undefined){
+        if(response.data.value.id== undefined){
           throw new Error("Cheack");
         }
-      console.log("I am here ",response.data[0].id);
-      Cookies.set("id",response.data[0].id)
+        console.log(response.data.value.id)
+      // console.log("I am here ",response.data[0].id);
       
+
+      console.log(response.data.value.accessToken)
       // Use SweetAlert2 directly without creating a separate instance
       const result = await Swal.fire({
         icon: 'success',
         title: 'Successfully logged in',
         text: `Welcome ${response.data}`,
         showConfirmButton: true,
-        timer: 5000, // Set a timer for 5 seconds (adjust as needed)
-        confirmButtonText: 'OK',
+        // timer: 5000, // Set a timer for 5 seconds (adjust as needed)
+        // confirmButtonText: 'OK',
       });
 
       if (result.isConfirmed) {
@@ -87,6 +109,7 @@ const Login = () => {
     }
 
     } catch (error) {
+      
       alert("An error occurred while logging in: " + error.message);
     }
   };

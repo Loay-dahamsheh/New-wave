@@ -5,18 +5,16 @@ const ContactUs = () => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [description, setDescription] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleContact = async (e) => {
     e.preventDefault();
     try {
       // Send the data to the server using Axios or another method
-      const response = await axios.post("http://localhost:4000/Contact", {
+      const response = await axios.post("http://127.0.0.1:3001/contactus", {
         name: name,
         email: email,
-        subject: subject,
-        description: description,
+        message: message,
       });
       console.log(email);
 
@@ -61,15 +59,15 @@ const ContactUs = () => {
                 placeholder="Email"
                 name="email"
               />
-              <input onChange={(e) => setSubject(e.target.value)}
+              {/* <input onChange={(e) => setSubject(e.target.value)}
                           value={subject}
                 className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Subject"
                 name="_subject"
-              />
-              <textarea onChange={(e) => setDescription(e.target.value)}
-                          value={description}
+              /> */}
+              <textarea onChange={(e) => setMessage(e.target.value)}
+                          value={message}
                 className="shadow mb-4 min-h-0 appearance-none border rounded h-64 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Type your message here..."
