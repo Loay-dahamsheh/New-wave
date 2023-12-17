@@ -12,7 +12,8 @@ router.put('/product/delete/:id',middleware.authorize,shoppingController.deletep
 router.get('/shoppingcart/totalprice',middleware.authorize,shoppingController.totalprice);
 router.post('/shoppingcart/checkout',middleware.authorize,shoppingController.createCheckoutSession);
 router.post('/booking',middleware.authorize,shoppingController.postbooking);
-router.get('/getbooking',middleware.authorize,shoppingController.getbooking);
+router.get('/getbooking',shoppingController.getbooking);
+router.put('/deletebooking/:id',shoppingController.deletebooking)
 
 
 module.exports = router;

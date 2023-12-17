@@ -17,7 +17,7 @@ const Header = () => {
     if (accessToken) {
       // User is logged in
       setLoggedIn(true);
-      setUserProfileImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png");
+      setUserProfileImage("https://cdn-icons-png.flaticon.com/512/9385/9385289.png");
     } else {
       // User is not logged in
       setLoggedIn(false);
@@ -117,8 +117,14 @@ const Header = () => {
     </div>
   );
 
+
+
+  
+  const currentPath =  window.location.pathname == "/Admin" ;
+
+
   return (
-    <div className="sticky top-0 w-full z-50">
+    <div className={`sticky top-0 w-full z-50 ${currentPath && 'hidden'}`}>
       <nav
         id="navv"
         className="flex items-center justify-between flex-wrap bg-white py-4 lg:px-12 shadow border-solid border-t-2 border-blue-700 bg-gradient-to-r from-gray-100 via-[#bce1ff] to-gray-100"
@@ -158,8 +164,8 @@ const Header = () => {
           </div>
         </div>
         {isNavVisible && (
-          <div className="menu w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
-            <div className="text-md font-bold text-blue-700 lg:flex-grow">
+          <div id="madia" className="menu w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
+            <div className="text-md font-bold text-blue-700 lg:flex-grow mr-48">
               <Link
                 to="/"
                 className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
@@ -187,7 +193,7 @@ const Header = () => {
                 Contact
               </Link>
             </div>
-            <Search />
+            {/* <Search /> */}
             <div className="flex ">{NavLogin}</div>
           </div>
         )}

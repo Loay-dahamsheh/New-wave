@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Swal from 'sweetalert2';
+
 
 const ContactUs = () => {
 
@@ -19,8 +21,23 @@ const ContactUs = () => {
       console.log(email);
 
       // Handle the response as per your application's needs
-      alert("successfully", response.data);
-      window.location.href = "/";
+      // alert("successfully", response.data);
+      const result = await Swal.fire({
+        icon: 'success',
+        title: 'Successfully',
+        text: `Message Send Thank You`,
+        showConfirmButton: true,
+        // timer: 5000, // Set a timer for 5 seconds (adjust as needed)
+        // confirmButtonText: 'OK',
+      });
+      // window.location.href = "/";
+
+      
+      if (result.isConfirmed) {
+        // Redirect to the home page or perform any other action
+        window.location.href = "/";
+      }
+
 
       // You can also redirect the user to another page after registration
     } catch (error) {

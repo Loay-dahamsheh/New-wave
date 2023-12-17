@@ -3,12 +3,13 @@ const contactusModel = require('../Models/contactusModel');
 
 
 async function postcontactus(req, res) {
-    
+    // const id = req.user.id;
+
     const { id, name, email, message } = req.body;
-    //console.log(id, name, email, message)
+    // console.log(id, name, email, message)
     try {
         const result = await contactusModel.contactus(id, name, email, message);
-        //console.log(result);
+        // console.log(result);
         res.status(201).json({ message: 'Contact us form data saved successfully!' });
     } catch (error) {
         console.log(error);
@@ -31,7 +32,23 @@ async function getmessages(req, res){
 
 
 
+async function softDeleteContact(req, res) {
+    try {
+        const contactId = req.params.id;
+
+        // Update the 'is_deleted' column to mark the contact as deleted
+        const softDeleteResult = await contactusModel.softDeleteContact(contactId);
+
+        res.status(200).json({ message: 'Contact soft deleted successfully.' });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+
+
   module.exports ={
     postcontactus,
-    getmessages
+    getmessages,
+    softDeleteContact
 };

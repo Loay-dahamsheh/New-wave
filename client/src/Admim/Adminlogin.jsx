@@ -39,6 +39,8 @@ const Adminlogin = () => {
     e.preventDefault(); // Prevent the default form submission
 
 
+
+
     // Basic validation
     if (!email || !password || !confirm) {
       setError("All fields are required");
@@ -96,13 +98,15 @@ const Adminlogin = () => {
         // console.log(response.data.value.id)
         // console.log("I am here ",response.data[0].id);
 
+        sessionStorage.setItem('role',2);
+
 
         console.log(response.data)
         // Use SweetAlert2 directly without creating a separate instance
         const result = await Swal.fire({
           icon: 'success',
           title: 'Successfully logged in',
-          text: `Welcome ${response.data}`,
+          text: `Welcome Admin`,
           showConfirmButton: true,
           // timer: 5000, // Set a timer for 5 seconds (adjust as needed)
           // confirmButtonText: 'OK',

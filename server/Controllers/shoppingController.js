@@ -178,14 +178,26 @@ const getcartproducts = async (req, res, next) => {
 
       async function getbooking(req, res){   
         try{
-          const userID = req.user.id;
+          // const userID = req.user.id;
             //console.log("getbooking controller");
-            const get = await Shopping.gatall(userID);
+            const get = await Shopping.gatall();
             res.status(200).json(get);
         }catch(error){
             res.status(500).json(error);
         }
     }
+
+
+
+    async function deletebooking(req, res) {
+      try {
+          const itemId = req.params.id;
+          await Shopping.softDeleteItem(itemId);
+          res.status(200).json({ message: 'Item soft deleted successfully' });
+      } catch (error) {
+          res.status(500).json(error);
+      }
+  }
 
     
 module.exports = {
@@ -195,7 +207,8 @@ module.exports = {
     totalprice,
     createCheckoutSession,
     postbooking,
-    getbooking
+    getbooking,
+    deletebooking
     
     
   };

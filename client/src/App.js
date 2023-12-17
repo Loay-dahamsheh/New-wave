@@ -87,8 +87,9 @@ import Cookies from "js-cookie";
 
 function App() {
 
-  const [role, setRole] = useState(0);
-
+  // const [role, setRole] = useState(0);
+  const role = sessionStorage.getItem('role');
+  console.log("ooooooooooooooooo",role)
   // useEffect(() => {
   //   const existingToken = Cookies.get("accessToken");
 
@@ -111,7 +112,7 @@ function App() {
 
       <Router>
 
-        {role !== 2 && <Header />}
+         <Header />
 
         <Routes>
           <Route path="/" element={<Home />} />
@@ -126,7 +127,16 @@ function App() {
           <Route path="/Detelis/:id" element={<Detelis />} />
 
 
-          <Route path="/BookNow" element={<BookNow />} />
+
+
+
+          <Route path="/BookNow" element={
+          role === '1'?(
+            <BookNow />
+          ):(
+            <Navigate to='/Login' replace={true}/>
+          )
+          } />
           <Route path="/Detelis1" element={<Detelis1 />} />
           <Route path="/Profile" element={<Profile />} />
 
@@ -134,14 +144,20 @@ function App() {
 
 
           {/* <Route path="/Admin" element={(role == 2) ? (<Admin />) : (<Navigate to="/Login" replace />)} /> */}
-          <Route path="/Admin" element={<Admin />} />
+          <Route path="/Admin" element={
+          role === '2'?(
+            <Admin/> 
+          ):(
+            <Navigate to='/Admin' replace={true}/>
+          )
+          } />
 
 
 
 
         </Routes>
 
-        {role !== 2 && <Footer />}
+         <Footer />
       </Router>
 
 

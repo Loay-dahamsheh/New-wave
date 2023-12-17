@@ -7,6 +7,8 @@ const Categories = () => {
   const [cardsData, setCardsData] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [userFavorites, setUserFavorites] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+
 
   useEffect(() => {
     const Token = getCookie("accessToken");
@@ -71,9 +73,50 @@ const Categories = () => {
     }
   };
 
+
+  const handleSearch = () => {
+    axios.get('http://127.0.0.1:3001/secondpage/getallproducts')
+      .then(response => {
+        console.log('API Response:', response.data);
+  
+        // Check if response.data.products is an array
+        if (Array.isArray(response.data.products)) {
+          const filteredCards = response.data.products.filter(
+            (card) =>
+              (card.name && card.name.includes(searchTerm)) ||
+              (card.price && card.price.includes(searchTerm)) 
+          );
+          setCardsData(filteredCards);
+        } else {
+          console.error('Error: Response data.products is not an array');
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  };
+  
+  
+  
+
+  
+
   return (
     <div className="flex flex-col items-center">
       <div>
+        <br></br>
+        <br></br>
+
+      <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border p-2 rounded-lg mb-4"
+        />
+        <button onClick={handleSearch} className="bg-blue-500 text-white p-2 rounded-lg mb-4 ml-2">
+          Search
+        </button>
         <h1 className="text-3xl font-bold my-4">Hourly Cleaning</h1>
         <h3 className="text-sm text-center text-gray-600 my-6">
           Awesome site. On the top advertising a business online includes

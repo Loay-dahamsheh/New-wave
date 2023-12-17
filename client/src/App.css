@@ -189,6 +189,10 @@ h5 {
   margin-top: 5px;
 }
 
+#aside {
+  background-color: aliceblue;
+}
+
 
 .bn632-hover {
   width: 130px;
@@ -212,6 +216,11 @@ h5 {
 
 .bn632-hover:focus {
   outline: none;
+}
+
+
+#font-medium {
+  margin-left: 44px;
 }
 
 .bn632-hover.bn28 {
@@ -500,6 +509,11 @@ background-color:aliceblue ;
 
 
 
+  #madia {
+    margin-left: 125px;
+  }
+
+
 }
 
 
@@ -539,3 +553,12 @@ background-color:aliceblue ;
     grid-template-columns: 1fr; /* Set a single column for smaller screens */
   }
 }
+
+
+#table {
+  margin-top: 80px;
+}
+
+
+
+

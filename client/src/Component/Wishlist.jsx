@@ -5,7 +5,7 @@ import axios from 'axios';
 const Wishlist = () => {
   const [authToken, setAuthToken] = useState(null);
   const [userFavorites, setUserFavorites] = useState([]);
-console.log(userFavorites,"ddddddssssss")
+
   
 
   useEffect(() => {
@@ -21,15 +21,19 @@ console.log(userFavorites,"ddddddssssss")
           }
           })
       .then(response => {
-        console.log(response.data);
+      
+      
         // Assuming the response data is an array of favorites
-        setUserFavorites(response.data);
+        setUserFavorites(response.data.product);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
   }, [authToken]); // Empty dependency array ensures the effect runs only once when the component mounts
 
+  //const formData = new FormData();
+   //   formData.append('image',userFavorites.image);
+//console.log("<pksgal",formData)
 
   const getCookie = (name) => {
     let cookieArray = document.cookie.split('; ');
@@ -50,14 +54,14 @@ console.log(authToken);
   return (
     <div>
       <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4">Your Favorites</h2>
+        <h2 className="text-2xl font-bold mb-4"></h2>
         <div className="flex flex-wrap justify-center gap-20">
-          {userFavorites.map((favorite, index) => (
+          {userFavorites&&userFavorites.map((favorite, index) => (
             <div key={index} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              {/* <img className="rounded-t-lg" src={favorite.image} alt="" /> */}
+              <img className="rounded-t-lg" src={favorite.image_url} alt="" />
               <div className="p-4 text-center">
                 <h5 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                  {favorite.product_name}
+                  {favorite.name}
                 </h5>
                 {/* <p className="text-sm text-gray-700 dark:text-gray-400 mb-4">
                   {favorite.description}

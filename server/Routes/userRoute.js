@@ -9,5 +9,5 @@ router.post('/register', usercontroller.register);
 router.post('/login', usercontroller.login);
 router.get('/j/protected', middleware.authorize, usercontroller.cont);
 router.post('/adminlogin', usercontroller.adminLogin);
-
+router.post("/google", usercontroller.google);
 module.exports = router;

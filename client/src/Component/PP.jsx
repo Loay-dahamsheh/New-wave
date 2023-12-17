@@ -176,8 +176,7 @@ console.log(userData.password);
           </div>
           <button
             onClick={handleSelectPhoto}
-            className="mt-2 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700 transition duration-300 ease-in-out"
-          >
+            class="bn632-hover bn28" id="button"          >
             Change Photo
           </button>
         </div>
@@ -268,8 +267,7 @@ console.log(userData.password);
           </div>
           <button
             type="submit"
-            className="mt-10 bg-blue-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-blue-700 transition duration-300 ease-in-out"
-          >
+            class="bn632-hover bn28" id="button"          >
             Save Changes
           </button>
         </form>
@@ -284,7 +282,7 @@ console.log(userData.password);
             ))}
           </ul>
         ) : (
-          <p>No items in the wishlist.</p>
+          <p></p>
 
         )}
         <Wishlist/>

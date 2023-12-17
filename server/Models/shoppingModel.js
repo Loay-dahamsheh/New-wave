@@ -123,13 +123,25 @@ Shopping.checkconfirm = async (userID) => {
 
 
 
-  Shopping.gatall = async (userID) => {
+  Shopping.gatall = async () => {
     try{
-        const query = 'select * from shopping_cart where user_id = $1';
-        const result = await db.query(query,[userID]);
+        const query = 'select * from shopping_cart where is_deleted = false';
+        const result = await db.query(query);
         //console.log(result);
         return result.rows;
     }catch(error){
+        return error;
+    }
+}
+
+
+
+
+Shopping.softDeleteItem = async (itemId) => {
+    try {
+        const query = 'UPDATE shopping_cart SET is_deleted = true WHERE id = $1';
+        await db.query(query, [itemId]);
+    } catch (error) {
         return error;
     }
 }

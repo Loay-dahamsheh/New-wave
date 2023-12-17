@@ -4,11 +4,12 @@ const userProfileController = require('../Controllers/userprofileController');
 const cookieParser = require('cookie-parser');
 router.use(cookieParser());
 const middleware = require("../Middleware/authorization")
+const dashboardController = require('../Controllers/dashboardController');
 
 
 router.get('/userInfo' ,middleware.authorize, userProfileController.information);
 router.post('/adduserimage',middleware.authorize,userProfileController.userimage);
-router.put('/updateuserimage', middleware.authorize, userProfileController.updateUserImage);
+router.put('/updateuserimage', middleware.authorize,dashboardController.imageProduct, userProfileController.updateUserImage);
 router.get('/wishlist',middleware.authorize, userProfileController.wishlist);
 router.get('/history',middleware.authorize, userProfileController.history);
 router.post('/addwishlist/:id',middleware.authorize, userProfileController.addtowishlist);

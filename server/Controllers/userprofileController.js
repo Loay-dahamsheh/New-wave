@@ -11,22 +11,38 @@ const bodyParser = require('body-parser');
 
 
 
-const storage = multer.diskStorage({
-    destination: 'C:/Users/Orange/Desktop/masterP-Back-End 1/client/src/assets/uploads', 
-    filename: function (req, file, cb) {
-      cb(null, 'image-' + Date.now() + path.extname(file.originalname));
-    }
-  });
+// const storage = multer.diskStorage({
+//     destination: 'C:/Users/Orange/Desktop/masterP-Back-End 1/client/src/assets/uploads', 
+//     filename: function (req, file, cb) {
+//       cb(null, 'image-' + Date.now() + path.extname(file.originalname));
+//     }
+//   });
   
-  const upload = multer({
-    storage: storage,
-    fileFilter: function (req, file, cb) {
-      if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
-        return cb(new Error('Please upload a valid image file'));
-      }
-      cb(null, true);
-    }
-  }).single('image'); 
+//   const upload = multer({
+//     storage: storage,
+//     fileFilter: function (req, file, cb) {
+//       if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
+//         return cb(new Error('Please upload a valid image file'));
+//       }
+//       cb(null, true);
+//     }
+//   }).single('image'); 
+
+
+let lastFileSequence = 0;
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads');
+  },
+  filename: (req, file, cb) => {
+    lastFileSequence++;
+    const newFileName = `${Date.now()}_${lastFileSequence}${path.extname(file.originalname)}`;
+    cb(null, newFileName);
+  },
+});
+
+const addImage = multer({ storage: storage });
+const imageProduct = addImage.single('image');
 
 
 
@@ -71,7 +87,7 @@ const userimage = async (req, res) => {
         }
         
         const { /* other category fields */ } = req.body;
-        const image = req.file ? req.file.filename : null;
+        const image = req.file ? req.file.image : null;
         
         await userProfileModel.createimage(userID,image /* other category fields */);
     
@@ -87,18 +103,21 @@ const userimage = async (req, res) => {
 
 
   const updateUserImage = async (req, res, next) => {
+    const userID = req.user.id;
+
+    const userImage = req.body.file;
+    console.log("my image" , userImage);
     try {
-      const userID = req.user.id;
   
-      upload(req, res, async function (err) {
-        if (err) {
-          return res.status(400).json({ success: false, error: err.message });
-        }
+      // upload(req, res, async function (err) {
+      //   if (err) {
+      //     return res.status(400).json({ success: false, error: err.message });
+      //   }
   
-        const { /* other category fields */ } = req.body;
-        const image = req.file ? req.file.filename : null;
+        // const image = req.file ? req.file.image : null;
                 //   await Dashboard.updateEmployee(employeeId, emp_name, image, emp_position);
 
+                console.log(userImage);
         // Assuming you have a function to retrieve the current user image
         // const currentUser = await userProfileModel.getUserByID(userID);
         // const currentImage = currentUser.user_image;
@@ -110,10 +129,10 @@ const userimage = async (req, res) => {
         // }
   
         // Update the user image in the database
-        await userProfileModel.updateUserImage(userID, image, /* other category fields */);
+        await userProfileModel.updateUserImage(userID, userImage, /* other category fields */);
   
         res.status(200).json({ success: true, message: 'Image updated successfully' });
-      });
+      
     } catch (err) {
       console.error(err);
       res.status(401).json({ success: false, error: 'Image update failed' });
@@ -128,7 +147,23 @@ async function wishlist(req, res){
         const userID = req.user.id;
         // const userID = 10;
         const wishlist = await userProfileModel.getWishlist(userID);
-        res.status(200).json(wishlist);
+        console.log("first",wishlist)
+        const modifiedResponse = {
+            product: wishlist.map(item => {
+              return {
+                
+                name: item.product_name,
+              
+                images: JSON.parse(item.image), 
+                price: item.price,
+             
+                image_url: `http://localhost:3001/uploads/${JSON.parse(item.image)}`
+              };
+            })
+          };
+
+         
+        res.status(200).json(modifiedResponse);
     } catch(error){
         res.status(500).json(error);
     }

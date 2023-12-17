@@ -59,15 +59,10 @@ const Card1 = () => {
 
   return (
     <div>
-      <div>
-        <h1 className='keep'>
-          Keep Your Home Clean Now..
-        </h1>
-      </div>
+      
       <br></br>
-      wonderful site. At the top is an advertisement for your online cleaning business..
 
-      <div id='card'style={{ marginLeft: '280px' }} className="flex flex-wrap gap-4">
+      <div id='card' className="flex flex-wrap gap-4">
         {data.map(key => (
           <div key={key.id} data-aos="fade-up" className="max-w-xs">
             <div id='l' className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

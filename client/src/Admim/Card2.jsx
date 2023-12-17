@@ -448,7 +448,7 @@ const Card2 = () => {
       <br />
       <br />
   
-      <div id="lk" style={{ marginLeft: '280px' }} className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div id="lk" className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {currentItems.map((item, index) => (
           <div key={index} data-aos="fade-up" className="mr-4 ml-4">
             <div

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
+import GoogleSignup from "../Component/GoogleSignup"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -81,6 +82,8 @@ const Login = () => {
       });
       Cookies.set("accessToken",response.data.accessToken)
       console.log("Server Response:", response);
+      sessionStorage.setItem('role',1);
+      
       if(response.status == 200){
         if(response.data.value.id== undefined){
           throw new Error("Cheack");
@@ -94,7 +97,7 @@ const Login = () => {
       const result = await Swal.fire({
         icon: 'success',
         title: 'Successfully logged in',
-        text: `Welcome ${response.data}`,
+        text: `Welcome To Clean Wave`,
         showConfirmButton: true,
         // timer: 5000, // Set a timer for 5 seconds (adjust as needed)
         // confirmButtonText: 'OK',
@@ -197,7 +200,8 @@ const Login = () => {
                     </p> <br></br>
                   </div>
                 </div>
-                <div id="google" className="w-full flex justify-center">
+                <GoogleSignup/>
+                {/* <div id="google" className="w-full flex justify-center">
                   <button className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     <svg
                       className="h-6 w-6 mr-2"
@@ -263,7 +267,7 @@ const Login = () => {
                     </svg>
                     <span>Continue with Google</span>
                   </button>
-                </div>
+                </div> */}
 
                 <div className="relative">
                   <button
@@ -273,7 +277,9 @@ const Login = () => {
                   >
                     Login
                   </button>
+                 
                 </div>
+              
               </div>
             </div>
           </div>

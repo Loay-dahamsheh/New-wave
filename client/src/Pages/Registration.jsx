@@ -56,7 +56,7 @@ const Registration = () => {
     const result = await Swal.fire({
       icon: 'success',
       title: 'Successfully logged in',
-      text: `Welcome ${response.data.username}`,
+      text: `Go To Login Page `,
       showConfirmButton: true,
       timer: 5000, // Set a timer for 5 seconds (adjust as needed)
       confirmButtonText: 'OK',
@@ -178,7 +178,7 @@ UserName                  </label>
                   <br></br>
    
                 </div>
-                <div id="google" className="w-full flex justify-center">
+                {/* <div id="google" className="w-full flex justify-center">
                   <button onClick={handleGoogleRegistration}
                   className="flex items-center bg-white border border-gray-300 rounded-lg shadow-md px-6 py-2 text-sm font-medium text-gray-800 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     <svg
@@ -245,7 +245,7 @@ UserName                  </label>
                     </svg>
                     <span>Continue with Google</span>
                   </button>
-                </div>
+                </div> */}
 
                 <div className="relative">
                   <button

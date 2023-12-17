@@ -91,7 +91,7 @@ console.log(authToken);
         Swal.fire({
           icon: 'success',
           title: 'Successfully logged in',
-          text: `Welcome ${response.data}`, // Fix: use backticks (`) for template literals
+          text: `Data Submited`, // Fix: use backticks (`) for template literals
           showConfirmButton: true,
           timer: 5000, // Set a timer for 5 seconds (adjust as needed)
           confirmButtonText: 'OK',

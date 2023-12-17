@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 require('dotenv').config();
+const Key = "loai"
 
 const schema = Joi.object({
     username : Joi.string().alphanum().min(3).max(10).required(),
@@ -77,7 +78,37 @@ function cont(req, res){
 
 
 
+const google = async (req, res) => {
+  try {
+    console.log("object");
+    const {name,email, phone_number } = req.body;
 
+
+   
+    const existUser = await user.login(email);
+
+    if (existUser.rows > 0) {
+      try {
+        const user = existUser.rows[0];
+
+        const token = jwt.sign(
+          { id: user.id, username: user.username, role: user.role },
+          Key
+        );
+      
+
+        return res.json({ user, token });
+      } catch (error) {
+        throw error;
+      }
+    }
+    const newUser = await user.addUser(name, email, phone_number);
+
+    return res.status(200).json(newUser);
+  } catch (error) {
+    console.log(error);
+  }
+};
 async function adminLogin(req, res) {
     try {
       const { email, password } = req.body;
@@ -121,5 +152,6 @@ module.exports = {
     register,
     login,
     cont,
-    adminLogin
+    adminLogin,
+    google
 };

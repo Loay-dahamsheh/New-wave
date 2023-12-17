@@ -21,7 +21,7 @@ async function contactus(id, name, email, message) {
 
   async function gatall(){
     try{
-        const query = 'select * from contact_us';
+        const query = 'select * from contact_us where is_delete = false';
         const result = await db.query(query);
         console.log(result);
         return result.rows;
@@ -32,8 +32,22 @@ async function contactus(id, name, email, message) {
 
 
 
+async function softDeleteContact(contactId) {
+  try {
+      const query = 'UPDATE contact_us SET is_delete = true WHERE id = $1';
+      const result = await db.query(query, [contactId]);
+      console.log(result);
+      return result.rowCount; // Returns the number of rows affected by the update
+  } catch (error) {
+      throw error;
+  }
+}
+
+
+
 
   module.exports = {
     contactus,
     gatall,
+    softDeleteContact
 };

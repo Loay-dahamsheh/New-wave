@@ -2,8 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+
+  const currentPath =  window.location.pathname == "/Admin" ;
+
+  console.log("I am in footer" , currentPath)
+
   return (
-    <div>
+    <div className={`${(currentPath)&&'hidden' }`}>
       <>
         {/* component */}
         <footer id="Foooter" className="bg-gradient-to-r from-gray-100 via-[#bce1ff] to-gray-100">

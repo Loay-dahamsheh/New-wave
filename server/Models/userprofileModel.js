@@ -31,10 +31,11 @@ async function getInformation(userID){
 
 
 
-async function updateUserImage(userID, image, /* other category fields */) {
+async function updateUserImage(userID, userImage, /* other category fields */) {
     try {
-      const imageUrlString = JSON.stringify(image);
-      const result = await db.query('UPDATE users SET user_image=$1 WHERE id=$2', [imageUrlString, userID]);
+      const imageUrlString = JSON.stringify(userImage);
+    
+      const result = await db.query('UPDATE users SET user_image=$2 WHERE id=$1', [userID,imageUrlString]);
       // Update other category fields in the same way if needed
   
       return result.rows;
@@ -48,12 +49,14 @@ async function updateUserImage(userID, image, /* other category fields */) {
 
 async function getWishlist(id){
     try{
-        const query = `SELECT witchlist.created_at, products.price,witchlist.id, products.product_name
+        const query = `SELECT witchlist.created_at, products.price,witchlist.id, products.product_name, products.image
         FROM witchlist
         INNER JOIN products ON products.id = witchlist.product_id
         WHERE witchlist.user_id = $1;`;
+      
         const wishlist = await db.query(query, [id]);
-        console.log(wishlist.rows);
+        
+    
         return wishlist.rows;
     }catch(error){
         res.status(500).json(error);
