@@ -28,6 +28,7 @@ const reactionRoute = require('./Routes/reactionRoute');
 const userprofileRoute = require('./Routes/userprofileRoute');
 const shoppingRoute = require('./Routes/shoppingRoute')
 const googleRoute = require("./Routes/googleRoute");
+const faqsRoute = require('./Routes/faqsRoute')
 
 
 
@@ -52,7 +53,7 @@ app.use(reactionRoute);
 app.use(userprofileRoute);
 app.use(shoppingRoute);
 app.use(googleRoute);
-
+app.use(faqsRoute);
 
 
 

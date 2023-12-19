@@ -1,6 +1,7 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const D = () => {
   useEffect(() => {
@@ -48,9 +49,9 @@ const D = () => {
                 standards.
               </p>
               <div className="mt-8">
-                {/* <a href="http://">
-         <button class="bn632-hover bn28" id="button">Learn More</button>
-         </a>  */}
+                <Link to="./Whyus">
+         <button class="bn632-hover bn28" id="button">See More</button>
+         </Link> 
               </div>
             </div>
           </div>

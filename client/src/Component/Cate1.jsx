@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+
 const Categories = () => {
   const [authToken, setAuthToken] = useState(null);
   const [cardsData, setCardsData] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const [userFavorites, setUserFavorites] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const Token = getCookie("accessToken");

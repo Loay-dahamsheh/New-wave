@@ -1,7 +1,14 @@
 import React from 'react'
+import { useEffect } from "react";
+import W from '../Component/Adminstration';
 
 
 const AboutUs = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div><>
     {/* component */}
@@ -39,6 +46,7 @@ const AboutUs = () => {
       </div>
     </div>
   </>
+  <W/>
   </div>
   )
 }

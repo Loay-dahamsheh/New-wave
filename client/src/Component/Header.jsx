@@ -192,6 +192,18 @@ const Header = () => {
               >
                 Contact
               </Link>
+              <Link
+                to="/Whyus"
+                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
+              >
+                Why Us
+              </Link>
+              {/* <Link
+                to="/FAQs"
+                className="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2"
+              >
+                FAQs
+              </Link> */}
             </div>
             {/* <Search /> */}
             <div className="flex ">{NavLogin}</div>

@@ -9,6 +9,7 @@ import Categores from "../Admim/Categores";
 import Card1 from "./Card1";
 import Contact from "./Contact";
 import Submit from "./Submit";
+import FAQs1 from "./FAQs1"
 import { Link } from "react-router-dom";
 
 const Admin = () => {
@@ -114,6 +115,12 @@ const Admin = () => {
                 >
                   <span className="flex-1 ms-3 whitespace-nowrap">Submit</span>
                 </button>
+                <button
+                  className="w-full flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-blue-400 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                  onClick={() => setPage("FAQs1")}
+                >
+                  <span className="flex-1 ms-3 whitespace-nowrap">FAQs</span>
+                </button>
               </div>
 
               <div className="space-y-3 ">
@@ -151,6 +158,9 @@ const Admin = () => {
         </div>
         <div className={`${page === "Submit" ? "block" : "hidden"} w-full`}>
           <Submit />
+        </div>
+        <div className={`${page === "FAQs1" ? "block" : "hidden"} w-full`}>
+          <FAQs1 />
         </div>
       </div>
     </div>

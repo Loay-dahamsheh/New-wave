@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
-
+import { useEffect } from "react";
 
 const ContactUs = () => {
 
@@ -44,7 +44,9 @@ const ContactUs = () => {
       alert("An error occurred during registration:", error);
     }
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>

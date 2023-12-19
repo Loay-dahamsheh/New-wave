@@ -80,6 +80,8 @@ import Profile from "./Pages/Profile";
 import Admin from "./Admim/Admin";
 import Adminlogin from "./Admim/Adminlogin";
 import Cookies from "js-cookie";
+import Whyus from "./Pages/Whyus"
+import FAQs from "./Component/FAQs"
 
 
 
@@ -121,6 +123,10 @@ function App() {
           <Route path="/Registration" element={<Registration />} />
           <Route path="/Adminlogin" element={<Adminlogin />} />
           <Route path="/ContactUs" element={<ContactUs />} />
+          <Route path="/Whyus" element={<Whyus/>} />
+          <Route path="/FAQs" element={<FAQs/>} />
+
+
 
 
           <Route path="/Categores" element={<Categores />} />

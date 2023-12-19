@@ -839,5 +839,127 @@
       "location": "hgghg",
       "id": 1
     }
+  ],
+  "FAQS": [
+    {
+      "id": "1",
+      "question": "How do I book a cleaning service on your website?",
+      "answer": "By clicking on the book now button after selecting the required service",
+      "expanded": false
+    },
+    {
+      "id": "2",
+      "question": "What types of cleaning services do you offer ?",
+      "answer": "Hourly Cleaning and One Visit and Holiday Package.",
+      "expanded": false
+    },
+    {
+      "id": "3",
+      "question": "Are your cleaning services available in my area ?",
+      "answer": "Of course,",
+      "expanded": false
+    },
+    {
+      "id": "4",
+      "question": "How can I get a quote for cleaning services?",
+      "answer": "On the services page, there is a card for each service, and the price is shown below the card",
+      "expanded": false
+    },
+    {
+      "id": "5",
+      "question": "What is the cancellation policy for booked cleaning services?",
+      "answer": "If payment is made after filling out the schedule for setting the selected appointments, unfortunately the service cannot be cancelled",
+      "expanded": false
+    },
+    {
+      "id": "6",
+      "question": "Are your cleaning products eco-friendly or pet-safe?",
+      "answer": "Of course,",
+      "expanded": false
+    },
+    {
+      "id": "7",
+      "question": "Can I schedule recurring cleaning services?",
+      "answer": "No",
+      "expanded": false
+    },
+    {
+      "id": "8",
+      "question": "Do I need to provide cleaning supplies or equipment?",
+      "answer": "No, all the equipment and tools necessary for the service are available with us and our distinguished team",
+      "expanded": false
+    },
+    {
+      "id": "9",
+      "question": "What is the estimated duration of a cleaning session?",
+      "answer": "Depending on the chosen service, there is an hourly service and a daily service",
+      "expanded": false
+    },
+    {
+      "id": "10",
+      "question": "Are your cleaners background-checked and insured?",
+      "answer": "yes",
+      "expanded": false
+    },
+    {
+      "id": "11",
+      "question": "How far in advance should I book a cleaning appointment?",
+      "answer": "It is best to make your reservation one day in advance",
+      "expanded": false
+    },
+    {
+      "id": "12",
+      "question": "Is there a satisfaction guarantee for your cleaning services?",
+      "answer": "Yes, you can comment on the available services and you can send messages on the page and we will follow them up",
+      "expanded": false
+    },
+    {
+      "id": "13",
+      "question": "What payment methods do you accept for bookings?",
+      "answer": "Currently the available payment service is via credit card",
+      "expanded": false
+    },
+    {
+      "id": "14",
+      "question": "Do you offer any discounts or promotions for regular customers?",
+      "answer": "Currently no, but in the future it will definitely be available",
+      "expanded": false
+    },
+    {
+      "id": "15",
+      "question": "Can I customize the cleaning services based on my specific needs?",
+      "answer": "Yes Of course,",
+      "expanded": false
+    },
+    {
+      "id": "16",
+      "question": "What happens if there's an issue with the cleaning service?",
+      "answer": "Communication is done through the website and then we communicate with customers to find out the problems",
+      "expanded": false
+    },
+    {
+      "id": "17",
+      "question": "How can I reschedule my cleaning appointment?",
+      "answer": "After filling out the appointment schedule and the client decides to change the appointment, he sends a message on our website to be contacted and schedule another appointment",
+      "expanded": false
+    },
+    {
+      "id": "18",
+      "question": "Are there any additional fees or hidden charges for cleaning services?",
+      "answer": "No",
+      "expanded": false
+    },
+    {
+      "id": "19",
+      "question": "Do you offer commercial cleaning services in addition to residential?",
+      "answer": "Home cleaning services only",
+      "expanded": false
+    },
+    {
+      "id": "20",
+      "question": "Is there a referral program for recommending your cleaning services to others?",
+      "answer": "No",
+      "expanded": false
+    }
   ]
 }
